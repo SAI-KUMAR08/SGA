@@ -1,0 +1,9 @@
+ls -li
+stat original.txt hardlink.txt symlink.txt
+cat original.txt
+cat hardlink.txt
+cat symlink.txt
+rm original.txt
+ls -li
+cat hardlink.txt
+cat symlink.txt

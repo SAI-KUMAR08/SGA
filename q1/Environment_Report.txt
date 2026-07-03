@@ -1,0 +1,34 @@
+Question 1: Linux Environment Verification
+
+Commands executed:
+1. whoami
+Output:
+codespace
+Observation: This confirmed the active login account is codespace.
+
+2. groups
+Output:
+codespace pipx python oryx golang docker sdkman rvm php conda nvs nvm hugo ssh
+Observation: The account belongs to the expected set of Linux groups for this environment.
+
+3. echo "$SHELL"
+Output:
+/bin/bash
+Observation: The default shell is /bin/bash.
+
+4. pwd
+Output:
+/workspaces/SGA/q1
+Observation: The current working directory is /workspaces/SGA/q1, which is the active lab directory.
+
+5. ls -ls
+Output:
+total 8
+4 -rw-rw-rw- 1 codespace codespace 134 Jul  3 18:23 commands.txt
+4 -rw-rw-rw- 1 codespace codespace 303 Jul  3 18:23 outputs.txt
+Observation: The workspace currently contains the files created for this lab and the repository root contents.
+
+6. curl -s --max-time 10 https://youtube.com > /dev/null && echo "Network: youtube.com reachable"
+Output:
+Network: youtube.com reachable
+Observation: Network access to YouTube was verified successfully from the container.

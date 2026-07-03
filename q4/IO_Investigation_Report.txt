@@ -1,0 +1,31 @@
+Question 4: File Access and I/O Investigation
+
+Open file observations:
+
+
+File descriptor observations:
+- The shell opened app.log on descriptor 3 through exec 3<app.log.
+- The descriptor appears in /proc/$$/fd and is visible to the shell process.
+
+Redirection results:
+- Standard output was redirected to stdout.txt.
+- Standard error was redirected to stderr.txt.
+- Both streams were combined into combined.txt with 2>&1.
+
+Resource limits:
+time(seconds)        unlimited
+file(blocks)         unlimited
+data(kbytes)         unlimited
+stack(kbytes)        8192
+coredump(blocks)     unlimited
+memory(kbytes)       unlimited
+locked memory(kbytes) 8192
+process              unlimited
+nofiles              524288
+vmemory(kbytes)      unlimited
+locks                unlimited
+rtprio               0
+
+Conclusion:
+- Linux uses file descriptors as abstract handles for files and streams.
+- Redirection changes where data is written or read without changing the underlying process logic.

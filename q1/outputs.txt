@@ -1,0 +1,12 @@
+$ whoami
+codespace
+$ groups
+codespace pipx python oryx golang docker sdkman rvm php conda nvs nvm hugo ssh
+$ echo "$SHELL"
+/bin/bash
+$ pwd
+/workspaces/SGA/q1
+$ ls -ls
+total 0
+$ curl -s --max-time 10 https://youtube.com > /dev/null && echo "Network: youtube.com reachable"
+Network: youtube.com reachable

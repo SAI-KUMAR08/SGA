@@ -1,0 +1,53 @@
+$ lsof | head -n 20
+COMMAND     PID   TID TASKCMD        USER   FD      TYPE             DEVICE  SIZE/OFF    NODE NAME
+docker-in     1                 codespace  cwd       DIR               0,45      4096 1101733 /
+docker-in     1                 codespace  rtd       DIR               0,45      4096 1101733 /
+docker-in     1                 codespace  txt       REG                8,1    845272  774629 /usr/sbin/docker-init
+docker-in     1                 codespace    0u      CHR                1,3       0t0      49 /dev/null
+docker-in     1                 codespace    1w     FIFO               0,14       0t0   29293 pipe
+docker-in     1                 codespace    2w     FIFO               0,14       0t0   29294 pipe
+sh            7                 codespace  cwd       DIR               0,45      4096 1101733 /
+sh            7                 codespace  rtd       DIR               0,45      4096 1101733 /
+sh            7                 codespace  txt       REG               0,45    129784 1048830 /usr/bin/dash
+sh            7                 codespace  mem       REG               0,45   2125328 1049464 /usr/lib/x86_64-linux-gnu/libc.so.6
+sh            7                 codespace  mem       REG               0,45    236616 1049444 /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+sh            7                 codespace    0u      CHR                1,3       0t0      49 /dev/null
+sh            7                 codespace    1w     FIFO               0,14       0t0   29293 pipe
+sh            7                 codespace    2w     FIFO               0,14       0t0   29294 pipe
+sshd        217                      root  cwd   unknown                                      /proc/217/cwd (readlink: Permission denied)
+sshd        217                      root  rtd   unknown                                      /proc/217/root (readlink: Permission denied)
+sshd        217                      root  txt   unknown                                      /proc/217/exe (readlink: Permission denied)
+sshd        217                      root NOFD                                                /proc/217/fd (opendir: Permission denied)
+dockerd     256                      root  cwd   unknown                                      /proc/256/cwd (readlink: Permission denied)
+$ exec 3<app.log
+
+$ lsof -p $$ | grep app.log
+
+$ ls -l /proc/$$/fd | grep app.log
+
+$ ls -l /proc/$$/fd
+total 0
+lr-x------ 1 codespace codespace 64 Jul  3 18:23 0 -> pipe:[598397]
+l-wx------ 1 codespace codespace 64 Jul  3 18:23 1 -> pipe:[602222]
+l-wx------ 1 codespace codespace 64 Jul  3 18:23 2 -> pipe:[602223]
+$ ls -l > stdout.txt
+
+$ ls /not_a_real_path 2> stderr.txt
+
+$ (ls -l && ls /not_a_real_path) > combined.txt 2>&1
+
+$ ulimit -a
+time(seconds)        unlimited
+file(blocks)         unlimited
+data(kbytes)         unlimited
+stack(kbytes)        8192
+coredump(blocks)     unlimited
+memory(kbytes)       unlimited
+locked memory(kbytes) 8192
+process              unlimited
+nofiles              524288
+vmemory(kbytes)      unlimited
+locks                unlimited
+rtprio               0
+$ exec 3<&-
+

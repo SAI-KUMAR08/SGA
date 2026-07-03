@@ -1,0 +1,35 @@
+Question 3: File System and Link Analysis
+
+Inode numbers:
+total 12
+1310822 -rw-rw-rw- 1 codespace codespace  156 Jul  3 18:23 commands.txt
+1310805 -rw-rw-rw- 1 codespace codespace   21 Jul  3 18:23 hardlink.txt
+1310823 -rw-rw-rw- 1 codespace codespace 1853 Jul  3 18:23 outputs.txt
+1310806 lrwxrwxrwx 1 codespace codespace   12 Jul  3 18:23 symlink.txt -> original.txt
+
+Metadata summary:
+File: hardlink.txt
+  Size: 21        	Blocks: 8          IO Block: 4096   regular file
+Device: 7,4	Inode: 1310805     Links: 1
+Access: (0666/-rw-rw-rw-)  Uid: ( 1000/codespace)   Gid: ( 1000/codespace)
+Access: 2026-07-03 18:23:28.331846974 +0000
+Modify: 2026-07-03 18:23:28.288846976 +0000
+Change: 2026-07-03 18:23:28.324846974 +0000
+ Birth: 2026-07-03 18:23:28.288846976 +0000
+  File: symlink.txt -> original.txt
+  Size: 12        	Blocks: 0          IO Block: 4096   symbolic link
+Device: 7,4	Inode: 1310806     Links: 1
+Access: (0777/lrwxrwxrwx)  Uid: ( 1000/codespace)   Gid: ( 1000/codespace)
+Access: 2026-07-03 18:23:28.305846975 +0000
+Modify: 2026-07-03 18:23:28.295846975 +0000
+Change: 2026-07-03 18:23:28.295846975 +0000
+ Birth: 2026-07-03 18:23:28.295846975 +0000
+stat: cannot statx 'original.txt': No such file or directory
+
+Behavior after deleting the original file:
+- The hard link continued to work because it points to the same inode.
+- The symbolic link broke because it stores the original path and no longer resolves after the target is removed.
+
+Conclusion:
+- A hard link is another name for the same inode and shares the same data.
+- A symbolic link is a separate filesystem entry that points to a path; it depends on the target path remaining valid.

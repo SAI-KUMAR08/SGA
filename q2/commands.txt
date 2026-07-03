@@ -1,0 +1,3 @@
+ls -ld secure_workspace secure_workspace/*
+ls -l secure_workspace/*
+umask
